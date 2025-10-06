@@ -33,6 +33,13 @@ public class Device {
     }
 
     public static Device of(String code, String name) { return new Device(code, name); }
+
+    public void update(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+
+    public Long getId() { return this.deviceId; }
 }
 
 
