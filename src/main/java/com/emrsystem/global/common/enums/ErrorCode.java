@@ -17,6 +17,7 @@ public enum ErrorCode {
     INVALID_PARAMETER_FORMAT(40002, HttpStatus.BAD_REQUEST, "요청에 유효하지 않은 인자 형식입니다."),
     BAD_REQUEST_JSON(40003, HttpStatus.BAD_REQUEST, "잘못된 JSON 형식입니다."),
     DATA_INTEGRITY_VIOLATION(40004, HttpStatus.BAD_REQUEST, "데이터 무결성 위반입니다. 필수 값이 누락되었거나 유효하지 않습니다."),
+    APPOINTMENT_TIME_OVERLAP(40005, HttpStatus.BAD_REQUEST, "해당 시간에 이미 예약이 존재합니다."),
     /**
      * 401(Unauthorized)
      *   비록 HTTP 표준에서는 "미승인(unauthorized)"를 명확히 하고 있지만,
@@ -39,11 +40,11 @@ public enum ErrorCode {
      *   서버들은 인증받지 않은 클라이언트로부터 리소스를 숨기기 위하여 이 응답을 403 대신에 전송할 수도 있습니다.
      *   이 응답 코드는 웹에서 반복적으로 발생하기 때문에 가장 유명할지도 모릅니다.
      * */
-    BOARD_NOT_FOUND(40400, HttpStatus.NOT_FOUND, "해당 게시글을 찾을 수 없습니다."),
-    COMMENT_NOT_FOUND(40401, HttpStatus.NOT_FOUND, "해당 댓글을 찾을 수 없습니다."),
-    ALREADY_EXISTS(40402,HttpStatus.NOT_FOUND, "이미 좋아요를 눌렀습니다."),
-    LIKE_NOT_FOUND(40403,HttpStatus.NOT_FOUND, "좋아요가 존재하지 않습니다."),
-    FILE_NOT_FOUND(40404,HttpStatus.NOT_FOUND, "파일이 존재하지 않습니다."),
+    HOSPITAL_NOT_FOUND(40400, HttpStatus.NOT_FOUND, "해당 병원을 찾을 수 없습니다."),
+    DEPARTMENT_NOT_FOUND(40401, HttpStatus.NOT_FOUND, "해당 진료과를 찾을 수 없습니다."),
+    DOCTOR_NOT_FOUND(40402, HttpStatus.NOT_FOUND, "해당 의사를 찾을 수 없습니다."),
+    PATIENT_NOT_FOUND(40403, HttpStatus.NOT_FOUND, "해당 환자를 찾을 수 없습니다."),
+    APPOINTMENT_NOT_FOUND(40404, HttpStatus.NOT_FOUND, "해당 예약을 찾을 수 없습니다."),
     /**
      * 500(Internal Server Error)
      *   서버가 처리 방법을 모르는 상황이 발생했습니다. 서버는 아직 처리 방법을 알 수 없습니다.
