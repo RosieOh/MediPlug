@@ -18,6 +18,31 @@ public enum ErrorCode {
     BAD_REQUEST_JSON(40003, HttpStatus.BAD_REQUEST, "잘못된 JSON 형식입니다."),
     DATA_INTEGRITY_VIOLATION(40004, HttpStatus.BAD_REQUEST, "데이터 무결성 위반입니다. 필수 값이 누락되었거나 유효하지 않습니다."),
     APPOINTMENT_TIME_OVERLAP(40005, HttpStatus.BAD_REQUEST, "해당 시간에 이미 예약이 존재합니다."),
+    ROOM_NOT_FOUND(40405, HttpStatus.NOT_FOUND, "해당 진료실을 찾을 수 없습니다."),
+    DEVICE_NOT_FOUND(40406, HttpStatus.NOT_FOUND, "해당 장비를 찾을 수 없습니다."),
+    NOTIFICATION_TEMPLATE_NOT_FOUND(40407, HttpStatus.NOT_FOUND, "해당 알림 템플릿을 찾을 수 없습니다."),
+    
+    // EMR 관련 에러 코드
+    MEDICAL_RECORD_NOT_FOUND(40408, HttpStatus.NOT_FOUND, "해당 진료기록을 찾을 수 없습니다."),
+    CHART_TEMPLATE_NOT_FOUND(40409, HttpStatus.NOT_FOUND, "해당 차트 템플릿을 찾을 수 없습니다."),
+    PRESCRIPTION_NOT_FOUND(40410, HttpStatus.NOT_FOUND, "해당 처방전을 찾을 수 없습니다."),
+    LAB_ORDER_NOT_FOUND(40411, HttpStatus.NOT_FOUND, "해당 검사 오더를 찾을 수 없습니다."),
+    
+    // Billing 관련 에러 코드
+    PROCEDURE_CODE_NOT_FOUND(40412, HttpStatus.NOT_FOUND, "해당 행위코드를 찾을 수 없습니다."),
+    BILLING_NOT_FOUND(40413, HttpStatus.NOT_FOUND, "해당 청구 내역을 찾을 수 없습니다."),
+    RECEIPT_NOT_FOUND(40414, HttpStatus.NOT_FOUND, "해당 영수증을 찾을 수 없습니다."),
+    
+    // Pharmacy 관련 에러 코드
+    DRUG_MASTER_NOT_FOUND(40415, HttpStatus.NOT_FOUND, "해당 약물 마스터를 찾을 수 없습니다."),
+    DRUG_INVENTORY_NOT_FOUND(40416, HttpStatus.NOT_FOUND, "해당 약물 재고를 찾을 수 없습니다."),
+    INSUFFICIENT_STOCK(40017, HttpStatus.BAD_REQUEST, "재고가 부족합니다."),
+    
+    // Bed Management 관련 에러 코드
+    BED_NOT_FOUND(40418, HttpStatus.NOT_FOUND, "해당 병상을 찾을 수 없습니다."),
+    ADMISSION_NOT_FOUND(40419, HttpStatus.NOT_FOUND, "해당 입원 정보를 찾을 수 없습니다."),
+    BED_OCCUPIED(40020, HttpStatus.BAD_REQUEST, "병상이 이미 사용 중입니다."),
+    PATIENT_ALREADY_ADMITTED(40021, HttpStatus.BAD_REQUEST, "환자가 이미 입원 중입니다."),
     /**
      * 401(Unauthorized)
      *   비록 HTTP 표준에서는 "미승인(unauthorized)"를 명확히 하고 있지만,
