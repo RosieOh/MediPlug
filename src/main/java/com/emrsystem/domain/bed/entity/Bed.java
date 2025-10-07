@@ -1,15 +1,7 @@
 package com.emrsystem.domain.bed.entity;
 
 import com.emrsystem.domain.resource.entity.Room;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,7 +36,7 @@ public class Bed {
     @Column(nullable = false, length = 50)
     private String status; // AVAILABLE, OCCUPIED, MAINTENANCE, OUT_OF_ORDER
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column(nullable = false)
     private Double dailyRate; // 일일 요금
 
     @Column(length = 500)
@@ -97,4 +89,10 @@ public class Bed {
     }
 
     public Long getId() { return this.bedId; }
+
+    // Compatibility methods expected by services
+    public String getDescription() { return this.notes; }
+    public void setMaintenance() { this.maintenance(); }
+    public void setAvailable() { this.release(); }
+    public void setOccupied() { this.occupy(); }
 }

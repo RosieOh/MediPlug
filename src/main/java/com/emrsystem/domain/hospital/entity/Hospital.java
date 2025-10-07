@@ -79,6 +79,9 @@ public class Hospital {
         this.address = address;
         this.phone = phone;
     }
+
+    // Compatibility getter
+    public Long getId() { return this.hospitalId; }
 }
 
 

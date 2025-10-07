@@ -40,6 +40,10 @@ public class Device {
     }
 
     public Long getId() { return this.deviceId; }
+
+    // Compatibility getters used in responses
+    public java.time.LocalDateTime getCreatedAt() { return null; }
+    public java.time.LocalDateTime getUpdatedAt() { return null; }
 }
 
 

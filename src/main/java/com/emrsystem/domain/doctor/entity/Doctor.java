@@ -89,6 +89,9 @@ public class Doctor {
         this.phone = phone;
         this.licenseNumber = licenseNumber;
     }
+
+    // Compatibility getter expected by services/responses
+    public Long getId() { return this.doctorId; }
 }
 
 

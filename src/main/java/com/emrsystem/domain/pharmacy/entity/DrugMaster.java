@@ -1,11 +1,6 @@
 package com.emrsystem.domain.pharmacy.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -105,17 +100,17 @@ public class DrugMaster {
         this.storageConditions = storageConditions;
     }
 
-    public static DrugMaster create(String drugCode, String drugName, String genericName, String manufacturer, String category,
-                                  String dosageForm, String strength, String unit, BigDecimal unitPrice, int shelfLife,
-                                  boolean prescriptionRequired, boolean controlled, String sideEffects, String contraindications,
-                                  String storageConditions) {
+    public static DrugMaster create(String drugCode, String drugName, String genericName,
+                                    String manufacturer, String category, String dosageForm, String strength,
+                                    String unit, BigDecimal unitPrice, int shelfLife, boolean prescriptionRequired,
+                                    boolean controlled, String sideEffects, String contraindications, String storageConditions) {
         return new DrugMaster(drugCode, drugName, genericName, manufacturer, category, dosageForm, strength, unit,
                 unitPrice, shelfLife, prescriptionRequired, controlled, sideEffects, contraindications, storageConditions);
     }
 
     public void update(String drugName, String genericName, String manufacturer, String category, String dosageForm,
-                      String strength, String unit, BigDecimal unitPrice, int shelfLife, boolean prescriptionRequired,
-                      boolean controlled, String sideEffects, String contraindications, String storageConditions) {
+                       String strength, String unit, BigDecimal unitPrice, int shelfLife, boolean prescriptionRequired,
+                       boolean controlled, String sideEffects, String contraindications, String storageConditions) {
         this.drugName = drugName;
         this.genericName = genericName;
         this.manufacturer = manufacturer;
@@ -141,4 +136,21 @@ public class DrugMaster {
     }
 
     public Long getId() { return this.drugMasterId; }
+
+    // Compatibility getters for services expecting code/name
+    public String getCode() { return this.drugCode; }
+    public String getName() { return this.drugName; }
+
+    // Compatibility factory matching service usage
+    public static DrugMaster create(String code, String name, String manufacturer, BigDecimal unitPrice, String description) {
+        // Map minimal fields; leave optional fields with defaults
+        return new DrugMaster(code, name, name, manufacturer, null, null, null, null, unitPrice, 0, false, false, description, null, null);
+    }
+
+    public void update(String name, String manufacturer, BigDecimal unitPrice, String description) {
+        this.drugName = name;
+        this.manufacturer = manufacturer;
+        this.unitPrice = unitPrice;
+        this.sideEffects = description;
+    }
 }

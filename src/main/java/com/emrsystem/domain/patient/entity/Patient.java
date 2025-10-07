@@ -97,6 +97,9 @@ public class Patient {
         this.phone = phone;
         this.address = address;
     }
+
+    // Compatibility getter
+    public Long getId() { return this.patientId; }
 }
 
 

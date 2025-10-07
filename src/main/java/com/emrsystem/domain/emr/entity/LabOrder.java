@@ -3,15 +3,7 @@ package com.emrsystem.domain.emr.entity;
 import com.emrsystem.domain.appointment.entity.Appointment;
 import com.emrsystem.domain.doctor.entity.Doctor;
 import com.emrsystem.domain.patient.entity.Patient;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -133,4 +125,9 @@ public class LabOrder {
     }
 
     public Long getId() { return this.labOrderId; }
+
+    // Compatibility shims for responses
+    public com.emrsystem.domain.emr.entity.MedicalRecord getMedicalRecord() { return null; }
+    public java.time.LocalDateTime getOrderDate() { return this.createdAt; }
+    public java.time.LocalDateTime getResultDate() { return this.completedAt; }
 }

@@ -48,6 +48,9 @@ public class AccessLog {
     public static AccessLog of(String username, String resource, String action, String details) {
         return new AccessLog(username, resource, action, details, LocalDateTime.now());
     }
+
+    // Compatibility getter for exports
+    public Long getId() { return this.accessLogId; }
 }
 
 

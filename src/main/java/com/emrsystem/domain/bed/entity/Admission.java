@@ -1,15 +1,7 @@
 package com.emrsystem.domain.bed.entity;
 
 import com.emrsystem.domain.patient.entity.Patient;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -78,9 +70,13 @@ public class Admission {
         this.status = status;
     }
 
-    public static Admission create(Patient patient, Bed bed, String admissionNumber, LocalDateTime admissionDate,
-                                 String admissionReason) {
-        return new Admission(patient, bed, admissionNumber, admissionDate, admissionReason, "ADMITTED");
+    public static Admission create(Patient patient, Bed bed, LocalDateTime admissionDate,
+                                 String admissionReason, String notes) {
+        // admissionNumber is generated as date-based identifier
+        String generatedNumber = java.time.format.DateTimeFormatter.ofPattern("yyyyMMddHHmmss").format(admissionDate);
+        Admission admission = new Admission(patient, bed, generatedNumber, admissionDate, admissionReason, "ADMITTED");
+        admission.notes = notes;
+        return admission;
     }
 
     public void discharge(LocalDateTime dischargeDate, String dischargeSummary) {
@@ -97,7 +93,16 @@ public class Admission {
         this.status = "TRANSFERRED";
     }
 
-    public void updateNotes(String notes) {
+    public void update(String reason, String notes) {
+        this.admissionReason = reason;
+        this.notes = notes;
+    }
+
+    // Compatibility methods expected by responses/services
+    public String getReason() { return this.admissionReason; }
+    public void transfer(Bed newBed, java.time.LocalDateTime when, String reason, String notes) {
+        transfer(newBed);
+        this.admissionReason = reason;
         this.notes = notes;
     }
 

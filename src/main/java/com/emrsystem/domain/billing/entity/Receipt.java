@@ -1,15 +1,7 @@
 package com.emrsystem.domain.billing.entity;
 
 import com.emrsystem.domain.patient.entity.Patient;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +27,10 @@ public class Receipt {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "billing_id")
+    private Billing billing;
 
     @Column(nullable = false, length = 50, unique = true)
     private String receiptNumber; // 영수증번호
@@ -102,4 +98,12 @@ public class Receipt {
     }
 
     public Long getId() { return this.receiptId; }
+
+    // Compatibility getters for responses
+    public com.emrsystem.domain.billing.entity.Billing getBilling() { return this.billing; }
+    public java.time.LocalDateTime getReceiptDate() { return this.issuedAt; }
+    public java.math.BigDecimal getAmountPaid() { return this.paidAmount; }
+    public String getPaymentReference() { return this.receiptNumber; }
+
+    public void setBilling(Billing billing) { this.billing = billing; }
 }

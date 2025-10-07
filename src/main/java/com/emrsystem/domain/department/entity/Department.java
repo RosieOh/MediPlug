@@ -78,6 +78,9 @@ public class Department {
     public void update(String name) {
         this.name = name;
     }
+
+    // Compatibility getter
+    public Long getId() { return this.departmentId; }
 }
 
 

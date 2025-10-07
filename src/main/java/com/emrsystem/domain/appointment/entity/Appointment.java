@@ -98,6 +98,9 @@ public class Appointment {
     public void updateStatus(String status) {
         this.status = status;
     }
+
+    // Compatibility getter expected by responses/services
+    public Long getId() { return this.appointmentId; }
 }
 
 
