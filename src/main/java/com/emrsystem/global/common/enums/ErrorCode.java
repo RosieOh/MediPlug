@@ -18,6 +18,8 @@ public enum ErrorCode {
     BAD_REQUEST_JSON(40003, HttpStatus.BAD_REQUEST, "잘못된 JSON 형식입니다."),
     DATA_INTEGRITY_VIOLATION(40004, HttpStatus.BAD_REQUEST, "데이터 무결성 위반입니다. 필수 값이 누락되었거나 유효하지 않습니다."),
     APPOINTMENT_TIME_OVERLAP(40005, HttpStatus.BAD_REQUEST, "해당 시간에 이미 예약이 존재합니다."),
+    DRUG_ALLERGY_WARNING(40006, HttpStatus.BAD_REQUEST, "환자에게 해당 약물에 대한 알레르기가 있습니다."),
+    DRUG_ALLERGY_SEVERE(40007, HttpStatus.BAD_REQUEST, "환자에게 해당 약물에 대한 심각한 알레르기가 있습니다. 처방할 수 없습니다."),
     ROOM_NOT_FOUND(40405, HttpStatus.NOT_FOUND, "해당 진료실을 찾을 수 없습니다."),
     DEVICE_NOT_FOUND(40406, HttpStatus.NOT_FOUND, "해당 장비를 찾을 수 없습니다."),
     NOTIFICATION_TEMPLATE_NOT_FOUND(40407, HttpStatus.NOT_FOUND, "해당 알림 템플릿을 찾을 수 없습니다."),
@@ -49,12 +51,14 @@ public enum ErrorCode {
      *   의미상 이 응답은 "비인증(unauthenticated)"을 의미합니다.
      *   클라이언트는 요청한 응답을 받기 위해서는 반드시 스스로를 인증해야 합니다.
      * */
+    UNAUTHORIZED(40100, HttpStatus.UNAUTHORIZED, "인증이 필요합니다."),
 
     /**
      * 403(Forbidden)
      * 클라이언트는 콘텐츠에 접근할 권리를 가지고 있지 않습니다.
      * 예를들어 그들은 미승인이어서 서버는 거절을 위한 적절한 응답을 보냅니다. 401과 다른 점은 서버가 클라이언트가 누구인지 알고 있습니다.
      */
+    FORBIDDEN(40300, HttpStatus.FORBIDDEN, "권한이 없습니다."),
 
 
     /**
@@ -70,6 +74,7 @@ public enum ErrorCode {
     DOCTOR_NOT_FOUND(40402, HttpStatus.NOT_FOUND, "해당 의사를 찾을 수 없습니다."),
     PATIENT_NOT_FOUND(40403, HttpStatus.NOT_FOUND, "해당 환자를 찾을 수 없습니다."),
     APPOINTMENT_NOT_FOUND(40404, HttpStatus.NOT_FOUND, "해당 예약을 찾을 수 없습니다."),
+    DATA_NOT_FOUND(40420, HttpStatus.NOT_FOUND, "데이터를 찾을 수 없습니다."),
     /**
      * 500(Internal Server Error)
      *   서버가 처리 방법을 모르는 상황이 발생했습니다. 서버는 아직 처리 방법을 알 수 없습니다.
